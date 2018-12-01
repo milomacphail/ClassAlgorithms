@@ -6,16 +6,16 @@ long long factorialize(int input);
 
 long long factorialize(int input)
 {
-
-    if(input == 1 || input == 0)
+    long long input2 = input;
+    if(input2 == 1 || input2 == 0)
     {
         return 1;
     }
-    for(int i = input - 1; i >= 1; i--)
+    for(long long i = input2 - 1; i >= 1; i--)
     {
-        input = input * i;
+        input2 = input2 * i;
     }
-    return input;
+    return input2;
 }
 
 int main(void)
