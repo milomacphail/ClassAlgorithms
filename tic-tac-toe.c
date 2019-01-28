@@ -1,6 +1,7 @@
 #include<stdio.h>
 #include<string.h>
 #include<stdlib.h>
+#include<cs50.h>
 
 void testForWin()
 {
@@ -40,6 +41,27 @@ void testForWin()
     }
     */
 }
+
+char* boardState[];
+{
+    char* input = get_string("Enter moves: ");
+    if (input != "x" || "o" || " ")
+    {
+        printf("Please enter valid characters: x, o or ' '.");
+    }
+    else
+    {
+        for(int i = 0, len = strlen(input); i < strlen; i++)
+        {
+            for(int j =0; j < strlen(board); j++)
+            {
+                input[i] = board[j];
+                printf("%c", input[i]);
+            }
+        }
+    }
+}
+
 int main()
 {
     testForWin();
