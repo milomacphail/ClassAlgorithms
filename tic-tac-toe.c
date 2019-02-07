@@ -3,69 +3,138 @@
 #include<stdlib.h>
 #include<cs50.h>
 
-void testForWin()
-{
-  char board[9];
-  int i;
-  int xCount = 0;
-  int oCount = 0;
+char board[10] = {'0', '1', '2', '3','4','5','6','7','8','9'};
 
-  for( i = 0; i < 9; i++){
-    board[i]= ' ';
-    if (i % 2 == 1)
-    {
-        board[i] = 'o';
-        oCount ++;
-    } else
-    {
-        board[i] = 'x';
-        xCount ++;
-    }
-
-    }
-   printf(" %c | %c | %c \n", board[0], board[1], board[2]);
-   printf("---+---+---\n");
-   printf(" %c | %c | %c \n", board[3], board[4], board[5]);
-   printf("---+---+---\n");
-   printf(" %c | %c | %c \n", board[6], board[7], board[8]);
-   printf("X Count:%i\n", xCount);
-   printf("O Count:%i\n", oCount);
-
-    /*if (board[0] (&&) board[4] (&&) board[8] || board[6] (&&) board[4] (&&) board[2] || board[0] (&&) board[1] (&&) board[2] ||board[3] (&&) board[4] (&&) board[5] || board[6] (&&) board[7] (&&) board[8] || board[0] (&&) board[3] (&&) board[6] ||board[1] (&&) board[4] (&&) board[7] || board[2] (&&) board[5] (&&) board[8] == 'x')
-    {
-        printf("X wins!\n");
-    }
-    else if (board[0] (&&) board[4] (&&) board[8] || board[6] (&&) board[4] (&&) board[2] || board[0] (&&) board[1] (&&) board[2] || board[3] (&&) board[4] (&&) board[5] || board[6] (&&) board[7] (&&) board[8] || board[0] (&&) board[3] (&&) board[6] || board[1] (&&) board[4] (&&) board[7] || board[2] (&&) board[5] (&&) board[8] == 'o')
-    {
-        printf("O wins!\n");
-    }
-    */
-}
-
-char* boardState[];
-{
-    char* input = get_string("Enter moves: ");
-    if (input != "x" || "o" || " ")
-    {
-        printf("Please enter valid characters: x, o or ' '.");
-    }
-    else
-    {
-        for(int i = 0, len = strlen(input); i < strlen; i++)
-        {
-            for(int j =0; j < strlen(board); j++)
-            {
-                input[i] = board[j];
-                printf("%c", input[i]);
-            }
-        }
-    }
-}
+int gameTime();
+void drawBoard();
 
 int main()
 {
-    testForWin();
+    int player = 1, i, move;
+
+    char square;
+
+    do {
+        drawBoard();
+
+        player = (player%2) ? 1 : 2;
+
+        printf("Player %d, your move!", player);
+        scanf("%d", &move);
+
+
+        square = (player == 1) ? 'X' : 'O';
+
+        if (choice == 0 && board[0] == '0')
+          board[0] = square;
+
+        else if (choice == 1 && board[1] == '1')
+          board[1] = square;
+
+        else if (choice == 2 && board[2] == '2')
+          board[2] = square;
+
+        else if (choice == 3 && board[3] == '3')
+          board[3] = square;
+
+        else if (choice == 4 && board[4] == '4')
+          board[4] = square;
+
+        else if (choice == 5 && board[5] == '5')
+          board[5] = square;
+
+        else if (choice == 6 && board[6] == '6')
+          board[6] = square;
+
+        else if (choice == 7 && board[7] == '7')
+          board[7] = square;
+
+        else if (choice == 8 && board[8] == '8')
+          board[8] = square;
+
+        else
+        {
+          printf("Sorry! Try another move.");
+
+          player--;
+
+          getchar();
+
+        }
+
+        i = gameTime();
+        player++;
+
+    }
+
+    //loop condition, while i == -1, game is in play and program will return a board image
+    while (i == -1)
+    drawBoard();
+
+    if (i == 1)
+    printf("Player %d wins the game!", --player);
+
+    else
+    printf("Game is a draw!");
+
+    getchar();
     return 0;
+}
+
+int gameTime()
+{
+    if (board[0] == board[1] && board[1] == board[2])
+    return 1;
+
+  else if(board[3] == board [4] && board[4] == board[5])
+    return 1;
+
+  else if(board[6] == board[7] && board[7] == board[8])
+    return 1;
+
+  // Vertical wins (036, 147, 258)
+  else if(board[0] == board[3] && board[3] == board[6])
+    return 1;
+
+  else if(board[1] == board[4] && board[4] == board[7])
+    return 1;
+
+  else if(board[2] == board[5] && board[5] == board[8])
+    return 1;
+
+  // Diagonal wins (246, 048)
+  else if(board[2] == board[4] && board[4] == board[6])
+    return 1;
+
+  else if(board[0] == board[4] && board[4] == board[8])
+    return 1;
+
+  // For draws/no wins = there is no above combination
+
+  else if (board[0] != 0 && board[1] != '1' && board[2] != '2' && board[3] != '3' && board[4] != '4'
+  && board[5] != '5' && board[6] != '6' && board[7] != '7' && board[8] != '8')
+
+    return 0;
+
+  else
+    return -1;
+}
+
+
+void drawBoard()
+{
+
+    system("cls");
+    printf("It's game time! Let's play.");
+    printf("Player 1 is X, Player 2 is O.");
+
+
+    printf(" %c | %c | %c \n", board[0], board[1], board[2]);
+    printf("---+---+---\n");
+    printf(" %c | %c | %c \n", board[3], board[4], board[5]);
+    printf("---+---+---\n");
+    printf(" %c | %c | %c \n", board[6], board[7], board[8]);
+
 }
 
 
