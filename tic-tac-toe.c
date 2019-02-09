@@ -5,7 +5,7 @@
 
 char board[10] = {'0', '1', '2', '3','4','5','6','7','8','9'};
 
-int gameTime();
+int gamePlay();
 void drawBoard();
 
 int main()
@@ -25,31 +25,31 @@ int main()
 
         square = (player == 1) ? 'X' : 'O';
 
-        if (choice == 0 && board[0] == '0')
+        if (move == 0 && board[0] == '0')
           board[0] = square;
 
-        else if (choice == 1 && board[1] == '1')
+        else if (move == 1 && board[1] == '1')
           board[1] = square;
 
-        else if (choice == 2 && board[2] == '2')
+        else if (move == 2 && board[2] == '2')
           board[2] = square;
 
-        else if (choice == 3 && board[3] == '3')
+        else if (move == 3 && board[3] == '3')
           board[3] = square;
 
-        else if (choice == 4 && board[4] == '4')
+        else if (move == 4 && board[4] == '4')
           board[4] = square;
 
-        else if (choice == 5 && board[5] == '5')
+        else if (move == 5 && board[5] == '5')
           board[5] = square;
 
-        else if (choice == 6 && board[6] == '6')
+        else if (move == 6 && board[6] == '6')
           board[6] = square;
 
-        else if (choice == 7 && board[7] == '7')
+        else if (move == 7 && board[7] == '7')
           board[7] = square;
 
-        else if (choice == 8 && board[8] == '8')
+        else if (move == 8 && board[8] == '8')
           board[8] = square;
 
         else
@@ -68,7 +68,7 @@ int main()
     }
 
     //loop condition, while i == -1, game is in play and program will return a board image
-    while (i == -1)
+    while (i == -1);
     drawBoard();
 
     if (i == 1)
@@ -81,7 +81,7 @@ int main()
     return 0;
 }
 
-int gameTime()
+int gamePlay()
 {
     if (board[0] == board[1] && board[1] == board[2])
     return 1;
@@ -92,7 +92,6 @@ int gameTime()
   else if(board[6] == board[7] && board[7] == board[8])
     return 1;
 
-  // Vertical wins (036, 147, 258)
   else if(board[0] == board[3] && board[3] == board[6])
     return 1;
 
@@ -102,7 +101,6 @@ int gameTime()
   else if(board[2] == board[5] && board[5] == board[8])
     return 1;
 
-  // Diagonal wins (246, 048)
   else if(board[2] == board[4] && board[4] == board[6])
     return 1;
 
@@ -125,8 +123,8 @@ void drawBoard()
 {
 
     system("cls");
-    printf("It's game time! Let's play.");
-    printf("Player 1 is X, Player 2 is O.");
+    printf("It's game time! Let's play.\n");
+    printf("Player 1 is X, Player 2 is O.\n");
 
 
     printf(" %c | %c | %c \n", board[0], board[1], board[2]);
