@@ -10,11 +10,13 @@ typedef struct Node
 void push(int, Node*);
 int pop(Node*);
 // int peek(struct Node*);
+void freeList(Node*);
 
 int main(void)
 {
     printf("Hello\n");
     Node* head = NULL;
+    Node* second = NULL;
     Node* third = NULL;
 
     head = (Node*)malloc(sizeof(Node));
@@ -39,7 +41,7 @@ void push(int data, Node* head)
 {
     Node* trav = head;
 
-    while(trav->next != NULL)
+    while(trav != NULL && trav->next != NULL)
     {
         trav = trav->next;
     }
@@ -48,7 +50,7 @@ void push(int data, Node* head)
     // trav->next->data = data
     // trav->next->next = NULL;
     Node* newNode = (Node*)malloc(sizeof(Node));
-    newNode->data = data;
+    newNode->data = 5;
     newNode->next = NULL;
     trav->next = newNode;
 }
@@ -68,3 +70,20 @@ int pop(Node* head)
     trav->next = NULL;
     return data;
 }
+
+void freeList(Node* root)
+{
+    Node* trav = root;
+    if (trav->next->next == NULL)
+    {
+        free(trav->next);
+        free (trav);
+        return;
+    }
+   // if (trav->next == NULL)
+  //    {}
+    freeList(trav->next);
+    free(trav);
+    return;
+}
+
